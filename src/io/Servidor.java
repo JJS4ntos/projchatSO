@@ -14,20 +14,25 @@ public class Servidor {
 	
 	public Servidor(int porta) throws IOException {
 		server= new ServerSocket(porta); //Crio um ServerSocket informando uma porta
+		initServidor();
 	}
 	
-	public void initServidor() {
+	private void initServidor() {
 		setServer_listen(new Task<Void>() {
 			protected Void call() throws IOException {
 				while(true) {
 					Socket socket=server.accept(); //Crio um socket se houver uma nova conexão de um client
 					Cliente cliente= new Cliente(socket);
 					Thread thread_cliente= new Thread(cliente);
-					thread_cliente.setDaemon(false);
+					thread_cliente.setDaemon(true);
 					thread_cliente.start();
 				}
 			}
 		});
+	}
+	
+	public ServerSocket getSSocket() {
+		return server;
 	}
 
 	public Task<Void> getServer_listen() {
