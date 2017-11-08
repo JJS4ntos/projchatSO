@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.ListView;
 import model.Cliente;
@@ -31,12 +32,16 @@ public class Servidor {
 		setServer_listen(new Task<Void>() {
 			protected Void call() throws IOException {
 				while(true) {
-					Socket socket=server.accept(); //Crio um socket se houver uma nova conexão de um client
+					Socket socket=server.accept(); //Crio um socket se houver uma nova conexÃ£o de um client
 					conectados.add(socket);
 					Cliente cliente= new Cliente(list_packets, socket);
+					cliente.setOnFailed(e-> cliente.getException().printStackTrace(System.err));
 					String now= LocalDateTime.now().toString();
-					if(list_log!=null)
-						list_log.getItems().add("[".concat(now).concat("]").concat(socket.getLocalAddress().getHostAddress()).concat(" se conectou."));
+					if(list_log!=null) {
+						Platform.runLater(()->list_log.getItems().add("[".concat(now).concat("]")
+								.concat(socket.getLocalAddress().getHostAddress()).concat(" se conectou.")));
+					}
+						
 					Thread thread_cliente= new Thread(cliente);
 					thread_cliente.setDaemon(true);
 					thread_cliente.start();
@@ -66,6 +71,7 @@ public class Servidor {
 	}
 	
 	public static void Broadcast(String message) {
+		
 		conectados.stream().forEach(s->{
 			try {
 				if(s.isConnected()) {
