@@ -22,7 +22,11 @@ public class ServidorController implements Initializable {
 		  private Thread threadServidor;
     
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize(URL url, ResourceBundle bundle) {
+		initActions();
+	}
+	
+	private void initActions() {
 		btn_ligar.setOnAction(e->{
 			if(btn_ligar.getText().equals("Ligar servidor")) {
 				iniciarServidor();
@@ -34,6 +38,9 @@ public class ServidorController implements Initializable {
 		});
 	}
 	
+	/***
+	 * Liga o servidor
+	 */
 	private void iniciarServidor() {
 		try {
 			servidor= new Servidor(666);
@@ -47,6 +54,9 @@ public class ServidorController implements Initializable {
 		}
 	}
 	
+	/***
+	 * Desliga o servidor
+	 */
 	private void pararServidor() {
 		try {
 			servidor.getSSocket().close();
