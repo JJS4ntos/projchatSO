@@ -71,7 +71,6 @@ public class Servidor {
 	}
 	
 	public static void Broadcast(String message) {
-		
 		conectados.stream().forEach(s->{
 			try {
 				if(s.isConnected()) {
