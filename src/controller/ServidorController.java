@@ -43,7 +43,7 @@ public class ServidorController implements Initializable {
 	 */
 	private void iniciarServidor() {
 		try {
-			servidor= new Servidor(666, list_packets, list_log);
+			servidor= new Servidor(512, list_packets, list_log);
 			threadServidor= new Thread(servidor.getServer_listen());
 			threadServidor.setDaemon(true);
 			threadServidor.start();
