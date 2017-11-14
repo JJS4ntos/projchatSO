@@ -18,6 +18,13 @@ public class Servidor {
 	private final ListView<String> list_log, list_packets;
 	public static ArrayList<Socket> conectados= new ArrayList<>();
 	
+	/***
+	 * Construtor da classe servidor
+	 * @param porta
+	 * @param list_packets
+	 * @param list_log
+	 * @throws IOException
+	 */
 	public Servidor(int porta, ListView<String> list_packets, ListView<String> list_log) throws IOException {
 		this.list_log= list_log;
 		this.list_packets=list_packets;
@@ -60,16 +67,25 @@ public class Servidor {
 
 	/***
 	 * Retorna o server_listen
+	 * O server_listen nada mais é do que uma task global
 	 * @return
 	 */
 	public Task<Void> getServer_listen() {
 		return server_listen;
 	}
 
+	/***
+	 * Altera o valor da task server_listen
+	 * @param server_listen
+	 */
 	public void setServer_listen(Task<Void> server_listen) {
 		this.server_listen = server_listen;
 	}
 	
+	/***
+	 * Realiza transmissão à toda lista de conectados
+	 * @param message
+	 */
 	public static void Broadcast(String message) {
 		conectados.stream().forEach(s->{
 			try {
@@ -84,6 +100,10 @@ public class Servidor {
 		});
 	}
 
+	/***
+	 * Retorna a lista de pacotes
+	 * @return
+	 */
 	public ListView<String> getList_packets() {
 		return list_packets;
 	}

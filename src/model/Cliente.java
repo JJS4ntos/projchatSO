@@ -10,16 +10,30 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.control.ListView;
 
+/***
+ * Esta classe é filha de uma tarefa
+ * @author A
+ *
+ */
 public class Cliente extends Task<Void>{
 
 	private final Socket socket;
 	private ListView<String> list_packets;
 	
+	/***
+	 * 
+	 * @param list_packets
+	 * @param socket
+	 */
 	public Cliente(ListView<String> list_packets, Socket socket) {
 		this.list_packets=list_packets;
 		this.socket= socket;
 	}
 
+	/***
+	 * 
+	 * @return
+	 */
 	public Socket getSocket() {
 		return socket;
 	}

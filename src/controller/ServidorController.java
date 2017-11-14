@@ -21,11 +21,15 @@ public class ServidorController implements Initializable {
 		  private Servidor servidor;
 		  private Thread threadServidor;
     
+
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
 		initActions();
 	}
 	
+	/***
+	 * Adiciona ações ao elementos da tela
+	 */
 	private void initActions() {
 		btn_ligar.setOnAction(e->{
 			if(btn_ligar.getText().equals("Ligar servidor")) {
