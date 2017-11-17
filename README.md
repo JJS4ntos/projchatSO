@@ -17,4 +17,4 @@ Este projeto foi desenvolvido por Igor Chaves, Jair Júnior, Thiago, Lucas Silva
 Funcionamento básico do Servidor
 --------------------------------
 
- - Ao ser ligado, o servidor criará em Thread para escutar, em loop infinito, uma determinada porta. Dessa forma, assim que algum cliente se conectar a esta porta, o servidor criará mais uma Thread para escutar tudo o que o cliente enviar para o Servidor. Ao final, teremos diversas Thread funcionando; cada uma delas dando atenção a apenas um cliente específico.
+ - Ao ser ligado, o servidor criará uma Thread para escutar, em loop infinito, uma determinada porta. Dessa forma, assim que algum cliente se conectar a esta porta, o servidor criará mais uma Thread para escutar tudo o que o cliente enviar para o Servidor. Ao final, teremos diversas Thread funcionando; cada uma delas dando atenção a apenas um cliente específico.
